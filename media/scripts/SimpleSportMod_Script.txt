@@ -1,0 +1,261 @@
+
+module Base {
+
+
+    item SimpleSportMod_Football
+    {
+        DisplayCategory 		= Sports,
+        Type					= Weapon,
+		SwingAnim				= Throw,
+
+        DisplayName				= Football,
+        WeaponSprite 			= Football,
+        WorldStaticModel 		= Football,
+        Icon					= Football,
+
+        PhysicsObject			= Ball,
+
+        UseSelf					= TRUE,
+
+        MaxRange				= 10,
+        Weight					= 0.425,
+
+        MinimumSwingTime		= 1.5,
+        SwingTime				= 1.5,
+        SwingAmountBeforeImpact	= 0.1,
+        MinDamage				= 0,
+        MaxDamage				= 0,
+        MaxHitCount				= 1,
+        TriggerExplosionTimer   = 40,
+        ExtraDamage  			= 0.001,
+        ExplosionRange  		= 2,
+
+		ExplosionSound 			= DropSoilFromDirtBag,
+		SwingSound 				= PipeBombThrow,
+
+        DoorDamage				= 5,
+		AttachmentType			= BigWeapon,
+
+    }
+
+	item SimpleSportMod_Baseball
+    {
+        DisplayCategory 		= Sports,
+        Type					= Weapon,
+		SwingAnim				= Throw,
+
+        DisplayName				= Baseball,
+        WeaponSprite 			= Baseball,
+        WorldStaticModel 		= Baseball,
+        Icon					= Baseball,
+
+        PhysicsObject			= Ball,
+
+        UseSelf					= TRUE,
+
+        MaxRange				= 10,
+        Weight					= 0.425,
+
+        MinimumSwingTime		= 1.5,
+        SwingTime				= 1.5,
+        SwingAmountBeforeImpact	= 0.1,
+        MinDamage				= 0,
+        MaxDamage				= 0,
+        MaxHitCount				= 1,
+        TriggerExplosionTimer   = 40,
+        ExtraDamage  			= 0.001,
+        ExplosionRange  		= 2,
+
+		ExplosionSound 			= DropSoilFromDirtBag,
+		SwingSound 				= PipeBombThrow,
+
+        DoorDamage				= 5,
+		AttachmentType			= BigWeapon,
+
+    }
+
+
+    item SimpleSportMod_Basketball
+    {
+        DisplayCategory 		= Sports,
+        Type					= Weapon,
+		SwingAnim				= Throw,
+
+        DisplayName				= Basketball,
+        WeaponSprite 			= Basketball,
+        WorldStaticModel 		= Basketball,
+        Icon					= Basketball,
+
+        PhysicsObject			= Ball,
+
+        UseSelf					= TRUE,
+
+        MaxRange				= 10,
+        Weight					= 0.425,
+
+        MinimumSwingTime		= 1.5,
+        SwingTime				= 1.5,
+        SwingAmountBeforeImpact	= 0.1,
+        MinDamage				= 0,
+        MaxDamage				= 0,
+        MaxHitCount				= 1,
+        TriggerExplosionTimer   = 40,
+        ExtraDamage  			= 0.001,
+        ExplosionRange  		= 2,
+
+		ExplosionSound 			= DropSoilFromDirtBag,
+		SwingSound 				= PipeBombThrow,
+
+        DoorDamage				= 5,
+		AttachmentType			= BigWeapon,
+
+    }
+
+    item SimpleSportMod_GolfBall
+    {
+        DisplayCategory 		= Sports,
+        Type					= Weapon,
+		SwingAnim				= Throw,
+
+        DisplayName				= Golf Ball,
+        WeaponSprite 			= GolfBall,
+        WorldStaticModel 		= GolfBall,
+        Icon					= GolfBall,
+
+        PhysicsObject			= Ball,
+
+        UseSelf					= TRUE,
+
+        MaxRange				= 10,
+        Weight					= 0.1,
+
+        MinimumSwingTime		= 1.5,
+        SwingTime				= 1.5,
+        SwingAmountBeforeImpact	= 0.1,
+        MinDamage				= 0,
+        MaxDamage				= 0,
+        MaxHitCount				= 1,
+        TriggerExplosionTimer   = 40,
+        ExtraDamage  			= 0.001,
+        ExplosionRange  		= 2,
+
+		ExplosionSound 			= DropSoilFromDirtBag,
+		SwingSound 				= PipeBombThrow,
+
+        DoorDamage				= 5,
+		AttachmentType			= BigWeapon,
+
+    }
+
+    item SimpleSportMod_TennisBall
+    {
+        DisplayCategory 		= Sports,
+        Type					= Weapon,
+		SwingAnim				= Throw,
+
+        DisplayName				= Tennis Ball,
+        WeaponSprite 			= TennisBall,
+        WorldStaticModel 		= TennisBall,
+        Icon					= TennisBall,
+
+        PhysicsObject			= Ball,
+
+        UseSelf					= TRUE,
+
+        MaxRange				= 10,
+        Weight					= 0.1,
+
+        MinimumSwingTime		= 1.5,
+        SwingTime				= 1.5,
+        SwingAmountBeforeImpact	= 0.1,
+        MinDamage				= 0,
+        MaxDamage				= 0,
+        MaxHitCount				= 1,
+        TriggerExplosionTimer   = 40,
+        ExtraDamage  			= 0.001,
+        ExplosionRange  		= 2,
+
+		ExplosionSound 			= DropSoilFromDirtBag,
+		SwingSound 				= PipeBombThrow,
+
+        DoorDamage				= 5,
+		AttachmentType			= BigWeapon,
+
+    }
+
+    item SimpleSportMod_PoolBall
+    {
+        DisplayCategory 		= Sports,
+        Type					= Weapon,
+		SwingAnim				= Throw,
+
+        DisplayName				= Pool Ball,
+        WeaponSprite 			= PoolBall,
+        WorldStaticModel 		= PoolBall,
+        Icon					= Poolball,
+
+        PhysicsObject			= Ball,
+
+        UseSelf					= TRUE,
+
+        MaxRange				= 10,
+        Weight					= 0.2,
+
+        MinimumSwingTime		= 1.5,
+        SwingTime				= 1.5,
+        SwingAmountBeforeImpact	= 0.1,
+        MinDamage				= 0,
+        MaxDamage				= 0,
+        MaxHitCount				= 1,
+        TriggerExplosionTimer   = 40,
+        ExtraDamage  			= 0.001,
+        ExplosionRange  		= 2,
+
+		ExplosionSound 			= DropSoilFromDirtBag,
+		SwingSound 				= PipeBombThrow,
+
+        DoorDamage				= 5,
+		AttachmentType			= BigWeapon,
+
+    }
+
+    item SimpleSportMod_SoccerBall
+    {
+        DisplayCategory 		= Sports,
+        Type					= Weapon,
+		SwingAnim				= Throw,
+
+        DisplayName				= Soccer Ball,
+        WeaponSprite 			= SoccerBall,
+        WorldStaticModel 		= SoccerBall,
+        Icon					= SoccerBall,
+
+        PhysicsObject			= Ball,
+
+        UseSelf					= TRUE,
+
+        MaxRange				= 10,
+        Weight					= 0.2,
+
+        MinimumSwingTime		= 1.5,
+        SwingTime				= 1.5,
+        SwingAmountBeforeImpact	= 0.1,
+        MinDamage				= 0,
+        MaxDamage				= 0,
+        MaxHitCount				= 1,
+        TriggerExplosionTimer   = 40,
+        ExtraDamage  			= 0.001,
+        ExplosionRange  		= 2,
+
+		ExplosionSound 			= DropSoilFromDirtBag,
+		SwingSound 				= PipeBombThrow,
+
+        DoorDamage				= 5,
+		AttachmentType			= BigWeapon,
+
+    }
+
+
+}
+
+

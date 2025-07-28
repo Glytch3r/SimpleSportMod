@@ -1,0 +1,67 @@
+
+module Base {
+
+
+
+
+    recipe Prepare Football
+	{
+		Football/Football2,
+		Result:Base.SimpleSportMod_Football,
+		Time:40.0,
+		Category:Survivalist,
+	}
+
+
+    recipe Prepare Tennis Ball
+	{
+		TennisBall,
+		Result:Base.SimpleSportMod_TennisBall,
+		Time:40.0,
+		Category:Survivalist,
+	}
+
+    recipe Prepare Golf Ball
+	{
+		GolfBall,
+		Result:Base.SimpleSportMod_GolfBall,
+		Time:40.0,
+		Category:Survivalist,
+	}
+
+    recipe Prepare Basketball
+	{
+		Basketball,
+		Result:Base.SimpleSportMod_Basketball,
+		Time:40.0,
+		Category:Survivalist,
+	}
+
+
+    recipe Prepare Baseball
+	{
+		Baseball,
+		Result:Base.SimpleSportMod_Baseball,
+		Time:40.0,
+		Category:Survivalist,
+	}
+
+
+
+    recipe Prepare Pool Ball
+	{
+		PoolBall,
+		Result:Base.SimpleSportMod_PoolBall,
+		Time:40.0,
+		Category:Survivalist,
+	}
+
+    recipe Prepare Soccer Ball
+	{
+		SoccerBall,
+		Result:Base.SimpleSportMod_SoccerBall,
+		Time:40.0,
+		Category:Survivalist,
+	}
+}
+

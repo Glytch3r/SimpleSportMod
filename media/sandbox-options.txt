@@ -1,0 +1,7 @@
+VERSION = 1,
+
+option SimpleSportMod.PickUpDistance
+{
+	type = double,	 min = 0.00,  max = 15,  default = 2,
+	page = SimpleSportMod,    translation = SimpleSportMod_PickUpDistance,
+}

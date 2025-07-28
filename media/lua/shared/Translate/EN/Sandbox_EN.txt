@@ -1,0 +1,6 @@
+
+Sandbox_EN = {
+	Sandbox_SimpleSportMod = "Simple Sport Mod",
+	Sandbox_SimpleSportMod_PickUpDistance = "Auto Pick-Up Radius",
+	Sandbox_SimpleSportMod_PickUpDistance_tooltip = "Defines the radius in which balls can be automatically picked up when pressing the Pick Up key.",
+}
