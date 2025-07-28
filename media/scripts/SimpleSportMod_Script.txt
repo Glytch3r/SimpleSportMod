@@ -35,7 +35,7 @@ module Base {
 
         DoorDamage				= 5,
 		AttachmentType			= BigWeapon,
-
+        OnCreate  				= SimpleSportMod.OnCreate,        
     }
 
 	item SimpleSportMod_Baseball
@@ -71,7 +71,7 @@ module Base {
 
         DoorDamage				= 5,
 		AttachmentType			= BigWeapon,
-
+        OnCreate  				= SimpleSportMod.OnCreate,
     }
 
 
@@ -108,7 +108,8 @@ module Base {
 
         DoorDamage				= 5,
 		AttachmentType			= BigWeapon,
-
+        OnCreate  				= SimpleSportMod.OnCreate,
+        
     }
 
     item SimpleSportMod_GolfBall
@@ -144,6 +145,7 @@ module Base {
 
         DoorDamage				= 5,
 		AttachmentType			= BigWeapon,
+        OnCreate  				= SimpleSportMod.OnCreate,
 
     }
 
@@ -180,6 +182,7 @@ module Base {
 
         DoorDamage				= 5,
 		AttachmentType			= BigWeapon,
+        OnCreate  				= SimpleSportMod.OnCreate,
 
     }
 
@@ -216,6 +219,7 @@ module Base {
 
         DoorDamage				= 5,
 		AttachmentType			= BigWeapon,
+        OnCreate  				= SimpleSportMod.OnCreate,
 
     }
 
@@ -252,6 +256,7 @@ module Base {
 
         DoorDamage				= 5,
 		AttachmentType			= BigWeapon,
+        OnCreate  				= SimpleSportMod.OnCreate,
 
     }
 

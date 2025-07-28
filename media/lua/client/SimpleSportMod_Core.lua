@@ -104,6 +104,7 @@ function SimpleSportMod.convert(item, fType)
 end
 
 SimpleSportMod.PickupAndEquip = ISBaseTimedAction:derive("SimpleSportMod.PickupAndEquip")
+
 function SimpleSportMod.PickupAndEquip:isValid() return true end
 function SimpleSportMod.PickupAndEquip:update() end
 function SimpleSportMod.PickupAndEquip:stop() ISBaseTimedAction.stop(self) end

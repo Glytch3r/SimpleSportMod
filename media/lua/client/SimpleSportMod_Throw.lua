@@ -50,49 +50,15 @@ function SimpleSportMod.OnWeaponSwing(atkr, wpn)
     Events.OnTick.Add(SimpleSportMod._trackThrownItem)
 end
 
-function SimpleSportMod.swing(pl, wpn)
-
-    if not wpn or SimpleSportMod.isUnarmed(pl, wpn) then 
-
-        
-        local user = pl:getUsername()
-        local ftype = wpn:getFullType() 
-        print(ftype)
-   
-
-    end
-
-end
-Events.OnWeaponSwing.Remove(SimpleSportMod.swing)
-
 --Events.OnWeaponSwing.Add(SimpleSportMod.swing)
 
 
 
-function SimpleSportMod.OnObjectAdded(obj)
-    if not obj then return end
-    local ftype = obj:getFullType() 
-    if not ftype then return end
-    print(ftype)
-end
--- SimpleSportMod.OnObjectAdded(obj)
 
 function SimpleSportMod.isThrowable(wpn)
     return wpn:getSwingAnim() == 'Throw' or wpn:getScriptItem():getSwingAnim() == 'Throw'
 end
 
-
-function SimpleSportMod.OnObjectCollide(pl, wpn)
-    if not pl then return end
-    if not wpn then return end
-
-    local ftype = wpn:getFullType() 
-    if ftype then
-        print(ftype)
-        print(SimpleSportMod.isThrowable(wpn))
-        local fType =  obj:getFullType()
-    end
+function SimpleSportMod.isUnarmed(pl, wpn)
+    return tostring(WeaponType.getWeaponType(pl)) == 'barehand' or (wpn and wpn:getCategories():contains("Unarmed"))
 end
-
-Events.OnObjectAdded.Add(SimpleSportMod.OnObjectAdded)
-Events.OnObjectCollide.Add(SimpleSportMod.OnObjectCollide)
