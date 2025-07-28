@@ -52,13 +52,3 @@ end
 
 --Events.OnWeaponSwing.Add(SimpleSportMod.swing)
 
-
-
-
-function SimpleSportMod.isThrowable(wpn)
-    return wpn:getSwingAnim() == 'Throw' or wpn:getScriptItem():getSwingAnim() == 'Throw'
-end
-
-function SimpleSportMod.isUnarmed(pl, wpn)
-    return tostring(WeaponType.getWeaponType(pl)) == 'barehand' or (wpn and wpn:getCategories():contains("Unarmed"))
-end
