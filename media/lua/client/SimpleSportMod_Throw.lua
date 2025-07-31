@@ -28,25 +28,37 @@
 require "lua_timers"
 
 SimpleSportMod = SimpleSportMod or {}
-
 function SimpleSportMod.doThrow(pl, wpn, targSq)
     if not wpn then return end
     if not SimpleSportMod.isSportItem(wpn) then return end
 
     local thrownLoc = pl:getCurrentSquare()
-    local targX = round(targSq:getX())
-    local targY = round(targSq:getY())
-    local targZ = round(targSq:getZ())
+    local plX, plY, plZ = thrownLoc:getX(), thrownLoc:getY(), thrownLoc:getZ()
+    local targX, targY, targZ = round(targSq:getX()), round(targSq:getY()), round(targSq:getZ())
 
-    local fType =  wpn:getFullType()
+    local scriptItem = ScriptManager.instance:FindItem(wpn:getFullType())
+    local maxRange = (scriptItem and scriptItem:getMaxRange()) or 10
+
+    local dist = thrownLoc:DistTo(targX, targY)
+
+    if dist > maxRange then
+        local dx = targX - plX
+        local dy = targY - plY
+        local scale = (maxRange + 1) / dist  -- add 1 extra square
+        targX = round(plX + dx * scale)
+        targY = round(plY + dy * scale)
+        targSq = getCell():getOrCreateGridSquare(targX, targY, targZ)
+    end
+
+    local fType = wpn:getFullType()
 
     if isClient() then
-        sendClientCommand("SimpleSportMod", "DropPoint", {dropPointX =  targX, dropPointY =  targY, dropPointZ =  targZ})
+        sendClientCommand("SimpleSportMod", "DropPoint", { dropPointX = targX, dropPointY = targY, dropPointZ = targZ })
     else
         SimpleSportMod.DropPoint(targX, targY, targZ)
     end
-    local flr = targSq:getFloor()
 
+    local flr = targSq:getFloor()
     if flr then
         flr:setHighlightColor(1, 0, 0, 1)
         flr:setHighlighted(true, false)
@@ -54,21 +66,21 @@ function SimpleSportMod.doThrow(pl, wpn, targSq)
 
     function SimpleSportMod.onTick()
         local ball = wpn:getWorldItem()
+        if ball then
+            if flr then
+                flr:setHighlightColor(1, 0, 0, 1)
+                flr:setHighlighted(true, true)
+            end
 
-        if  ball then
-
-            return
+            ISRemoveItemTool.removeItem(wpn, pl:getPlayerNum())
+            targSq:AddWorldInventoryItem(fType, 0, 0, 0)
+            Events.OnTick.Remove(SimpleSportMod.onTick)
         end
-
-        ISRemoveItemTool.removeItem(wpn, pl:getPlayerNum())
-        local spawnedBall = targSq:AddWorldInventoryItem(tostring(fType), 0, 0, 0)
-        Events.OnTick.Remove(SimpleSportMod.onTick)
-
-
-        
     end
+
     Events.OnTick.Add(SimpleSportMod.onTick)
 end
+
 -----------------------            ---------------------------
 function SimpleSportMod.swing(pl, wpn)
     if wpn and SimpleSportMod.isThrowable(wpn) then

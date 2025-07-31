@@ -34,33 +34,42 @@ local Commands = {};
 Commands.SimpleSportMod = {};
 
 
+
+
 function SimpleSportMod.DropPoint(x, y, z)
-    local pl = getPlayer(); if not pl then return end 
    local rad = SandboxVars.SimpleSportMod.PickUpDistance or 3
    local dur = SandboxVars.SimpleSportMod.CatchWindow or 3
+   local pl = getPlayer()
    local targSq = getCell():getOrCreateGridSquare(x, y, z)
-   
-   local dropRad = getWorldMarkers():addGridSquareMarker("circle_center", "circle_only_highlight", targSq, 1, 0, 0, true, rad)
+
+   local isInside = false
+   local marker = getWorldMarkers():addGridSquareMarker("circle_only_highlight", "circle_only_highlight", targSq, 1, 0, 0, true, rad)
 
    local function updateMarker()
-      if not dropRad or dropRad:isRemoved() then return end
-      
+      if not marker or marker:isRemoved() then return end
+
       local dist = pl:DistTo(x, y)
-      if dist <= rad then
-         dropRad:setColor(0, 1, 0)
-      else
-         dropRad:setColor(1, 0, 0)
+      local newInside = dist <= rad
+
+      if newInside ~= isInside then
+         isInside = newInside
+         marker:remove()
+
+         if isInside then
+            marker = getWorldMarkers():addGridSquareMarker("circle_only_highlight", "circle_only_highlight", targSq, 0, 1, 0, true, rad)
+         else
+            marker = getWorldMarkers():addGridSquareMarker("circle_only_highlight", "circle_only_highlight", targSq, 1, 0, 0, true, rad)
+         end
       end
    end
 
    Events.OnTick.Add(updateMarker)
 
    timer:Simple(dur, function()
-      if dropRad then dropRad:remove() end
+      if marker then marker:remove() end
       Events.OnTick.Remove(updateMarker)
    end)
 end
-
 
 
 Commands.SimpleSportMod.DropPoint = function(args)

@@ -16,14 +16,28 @@ function SimpleSportMod.spawn()
     }
     local inv = getPlayer():getInventory() 
     if inv then
-        for _, fType in ipairs(fType) do
+        for _, fType in ipairs(balls) do
             inv:AddItem(fType)
         end
     end
     ISInventoryPage.dirtyUI()
 end
 
+function SimpleSportMod.floorSpawn()
+    
+    local item = getPlayer():getCurrentSquare():AddWorldInventoryItem( "Base.SimpleSportMod_Football", 0, 0, 0)
 
+    ISInventoryPage.dirtyUI()
+end
+
+
+--[[ 
+local item = SimpleSportMod.findSportItem(sq)
+if item then
+    
+end
+
+ ]]
 -----------------------            ---------------------------
 --[[ 
 local sq =  getPlayer():getCurrentSquare() 

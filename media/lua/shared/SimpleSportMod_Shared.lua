@@ -19,13 +19,24 @@
 
 SimpleSportMod = SimpleSportMod or {}
 
+function SimpleSportMod.getFType(item)
+   if not item then return nil end
+   return (item.getFullType and item:getFullType())
+       or (item.getWorldItem and item:getWorldItem() and item:getWorldItem():getFullType())
+end
+
 function SimpleSportMod.OnCreate(item)
+    --print(item)
     local pl = getPlayer()
-    if SimpleSportMod.isOnTheFloor(item) then        
-        
+    if SimpleSportMod.isOnTheFloor(item) then     
+        if getCore():getDebug() then
+            print(SimpleSportMod.getFType(item)) 
+        end
     end
 end
 
+
+--[[ 
 function SimpleSportMod.getCatcher(item)
     local sq = nil
     if SimpleSportMod.isOnTheFloor(item) then
@@ -44,7 +55,7 @@ function SimpleSportMod.getCatcher(item)
     return targ
 end
 
-
+ ]]
 function SimpleSportMod.getPointer()
 	if not isIngameState() then return nil end
 	local sq = nil

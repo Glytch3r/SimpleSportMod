@@ -97,13 +97,12 @@ function SimpleSportMod.getSportItem(sq)
    end
    return nil
 end
-
 function SimpleSportMod.findSportItem(sq)
    local pl = getPlayer()
    local rad = SandboxVars.SimpleSportMod.PickUpDistance or 3
    sq = sq or pl:getCurrentSquare()
    if not sq then return nil end
-
+   
    local cx, cy, cz = sq:getX(), sq:getY(), sq:getZ()
    local closestItem, closestObj, closestSq
    local bestDist = math.huge
@@ -138,6 +137,7 @@ function SimpleSportMod.findSportItem(sq)
 end
 -----------------------            ---------------------------
 
+
 function SimpleSportMod.convert(item, fType)
    fType = fType or SimpleSportMod.getFType(item)
    if not item or not fType then return item end
@@ -149,45 +149,42 @@ function SimpleSportMod.convert(item, fType)
    local pl = getPlayer()
    local sq = item:getWorldItem() and item:getWorldItem():getSquare()
    if not sq then return item end
-
+   
    local newItem = sq:AddWorldInventoryItem(SimpleSportMod.VanillaToMods[fType], 0, 0, 0)
    if not newItem then return item end
-
+   
    newItem:setCondition(item:getCondition())
    newItem:setName(item:getName())
-
-   local oldData = item:getModData()
-   if type(oldData) == "table" then
-      for k, v in pairs(oldData) do
-         newItem:getModData()[k] = v
-      end
-   end
-
+   
    ISRemoveItemTool.removeItem(item, pl:getPlayerNum())
    return newItem
 end
 -----------------------            ---------------------------
-
 function SimpleSportMod.keypress(key)
    if not isIngameState() then return end
    local pl = getPlayer()
-
-   if key == getCore():getKey("Catch") then
-      local dur = SandboxVars.SimpleSportMod.CatchWindow or 3
-      SimpleSportMod.setCatchPrepare(pl, true)
-      SimpleSportMod.instaCatchAction(pl)
-
-      timer:Simple(dur, function()
-         SimpleSportMod.setCatchPrepare(pl, false)
-      end)
+   local catchMode = key == getCore():getKey("Catch") 
+   local pickupMode = key == getCore():getKey("Pick Up") 
+   local item, obj, sq = nil, nil, nil
+   
+   if catchMode or pickupMode then
+      item, obj, sq = SimpleSportMod.findSportItem(pl:getSquare())
+   end
+   if not item then      
+      return key
    end
 
-   if key == getCore():getKey("Pick Up") then
-      local item, obj, sq = SimpleSportMod.findSportItem(pl:getSquare())
+   if catchMode then
+      SimpleSportMod.setCatchPrepare(pl, true)
+      print('catchMode')
 
-      if not item then
-         return key
-      end
+      --SimpleSportMod.instaCatchAction(pl)
+   end
+
+   if pickupMode then
+
+      print('pickupMode')
+    
 
       local fType = item:getFullType()
 
@@ -207,4 +204,46 @@ function SimpleSportMod.keypress(key)
    end
 
    return key
+end
+Events.OnKeyPressed.Add(SimpleSportMod.keypress)
+
+function SimpleSportMod.FollowDropPoint(pl)
+   pl = pl or getPlayer()
+
+   local rad = SandboxVars.SimpleSportMod.PickUpDistance or 3
+   local data = SimpleSportMod.getData(pl)
+   data.isFollowingMarker = true
+
+   local function createMarker(x, y, z, isInside)
+      local r, g = 1, 0
+      if isInside then r, g = 0, 1 end
+      local sq = getCell():getOrCreateGridSquare(x, y, z)
+      return getWorldMarkers():addGridSquareMarker("circle_only_highlight", "circle_only_highlight", sq, r, g, 0, true, rad)
+   end
+
+   local px, py, pz = pl:getX(), pl:getY(), pl:getZ()
+   local marker = createMarker(px, py, pz, true)
+   local isInside = true
+
+   local function updateMarker()
+      if not data.isFollowingMarker then
+         if marker then marker:remove() end
+         Events.OnTick.Remove(updateMarker)
+         return
+      end
+
+      local x, y, z = pl:getX(), pl:getY(), pl:getZ()
+      local dist = pl:DistTo(x, y)
+      local newInside = dist <= rad
+
+      -- Remove and redraw marker if color changes or position changes
+      if newInside ~= isInside or x ~= px or y ~= py or z ~= pz then
+         if marker then marker:remove() end
+         marker = createMarker(x, y, z, newInside)
+         isInside = newInside
+         px, py, pz = x, y, z
+      end
+   end
+
+   Events.OnTick.Add(updateMarker)
 end
