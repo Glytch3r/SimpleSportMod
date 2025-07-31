@@ -2,7 +2,7 @@ SimpleSportMod = SimpleSportMod or {}
 
 
 
-SimpleSportMod.spawn()
+--SimpleSportMod.spawn()
 
 function SimpleSportMod.spawn()
     local balls = {
@@ -22,6 +22,54 @@ function SimpleSportMod.spawn()
     end
     ISInventoryPage.dirtyUI()
 end
+
+
+-----------------------            ---------------------------
+--[[ 
+local sq =  getPlayer():getCurrentSquare() 
+local worldObjects = sq:getWorldObjects()
+for i = 0, worldObjects:size() - 1 do
+    local item = worldObjects:get(i)
+    local ball = item:getItem()
+    if item then
+        local fType = item:getFullType()
+        if SimpleSportMod.SportItems[fType] or SimpleSportMod.VanillaSportItems[fType] then
+            SimpleSportMod.setCatchPrepare(getPlayer() , true)   
+            print(fType)
+        end
+    end
+    
+end
+
+local sq =  getPlayer():getCurrentSquare() 
+local worldObjects = sq:getWorldObjects()
+for i = 1, worldObjects:size()  do
+    local item = worldObjects:get(i-1):getItem()
+    -- item = item:getItem()
+    if item then
+        print(item)
+
+    end
+end
+ ]]
+
+--[[     local sq = getPlayer():getCurrentSquare() 
+    for i=1, sq:getObjects():size() do
+        local item = sq:getObjects():get(i-1)
+        if instanceof(item, "IsoWorldInventoryObject") then
+            local fType = item:getFullType()
+
+            if fType then
+                if SimpleSportMod.SportItems[fType] or SimpleSportMod.VanillaSportItems[fType] then
+                    print(fType)
+                end
+            end
+        end
+    end
+
+ ]]
+
+-----------------------            ---------------------------
 --[[ 
 SimpleSportMod.spawn()
 

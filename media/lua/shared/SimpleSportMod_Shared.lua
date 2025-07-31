@@ -18,17 +18,32 @@
 
 
 SimpleSportMod = SimpleSportMod or {}
---[[ 
+
 function SimpleSportMod.OnCreate(item)
     local pl = getPlayer()
+    if SimpleSportMod.isOnTheFloor(item) then        
+        
+    end
+end
+
+function SimpleSportMod.getCatcher(item)
+    local sq = nil
     if SimpleSportMod.isOnTheFloor(item) then
-        local targ = SimpleSportMod.getCatcher(item)
-        if targ then
-            ISRemoveItemTool.removeItem(item, 0)
-            ISInventoryPage.renderDirty = true;
+        sq = item:getWorldItem():getSquare()
+    end
+    if not sq then return end    
+    local targ = nil
+    for i=1, sq:getMovingObjects():size() do
+        local targ = sq:getMovingObjects():get(i-1)
+        if targ and instanceof(targ, "IsoPlayer") then
+            targ:addLineChatElement('!')
+            print('SimpleSportMod: catcher found') 
+            return targ
         end
     end
-end ]]
+    return targ
+end
+
 
 function SimpleSportMod.getPointer()
 	if not isIngameState() then return nil end
@@ -72,23 +87,6 @@ function SimpleSportMod.isOnTheFloor(item)
 end
 
 
-function SimpleSportMod.getCatcher(item)
-    local sq = nil
-    if SimpleSportMod.isOnTheFloor(item) then
-        sq = item:getWorldItem():getSquare()
-    end
-    if not sq then return end    
-    local targ = nil
-    for i=1, sq:getMovingObjects():size() do
-        local targ = sq:getMovingObjects():get(i-1)
-        if targ and instanceof(targ, "IsoPlayer") then
-            targ:addLineChatElement('!')
-            print('SimpleSportMod: catcher found') 
-            return targ
-        end
-    end
-    return targ
-end
 
 --[[
  getPlayer():getCurrentSquare():AddWorldInventoryItem("SimpleSportMod_SoccerBall", 0,0,0)

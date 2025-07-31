@@ -25,125 +25,50 @@
    ░▒▓█████▓▒░     ░▒▓█▓▒░        ░▒▓█▓▒░░▒▓█▓▒░  ░▒▓███████▓▒░   ░▒▓██████▓▒░   ░▒▓█▓▒░ ░▒▓█▓▒░  ░▒▓███████▓▒░    ░▒▓███████▓▒░
 █████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████--]]
 
------------------------            ---------------------------
+require "lua_timers"
 
+--client
 SimpleSportMod = SimpleSportMod or {}
 
+local Commands = {};
+Commands.SimpleSportMod = {};
 
 
-function SimpleSportMod.getData(pl)   
-   pl = pl or getPlayer()
-   return pl:getModData()['SimpleSportMod']
-end
+function SimpleSportMod.DropPoint(x, y, z)
+    local pl = getPlayer(); if not pl then return end 
+   local rad = SandboxVars.SimpleSportMod.PickUpDistance or 3
+   local dur = SandboxVars.SimpleSportMod.CatchWindow or 3
+   local targSq = getCell():getOrCreateGridSquare(x, y, z)
+   
+   local dropRad = getWorldMarkers():addGridSquareMarker("circle_center", "circle_only_highlight", targSq, 1, 0, 0, true, rad)
 
-function SimpleSportMod.isPreparedToCatch(pl)   
-   pl = pl or getPlayer()
-   local data = SimpleSportMod.getData(pl) or {}
-   return data['isPreparedToCatch']   
-end
-
-function SimpleSportMod.setCatchPrepare(pl, bool)   
-   pl = pl or getPlayer()
-   local data = SimpleSportMod.getData(pl) or {}
-   data['isPreparedToCatch'] = bool
-   print(bool)
-   return bool
-end
-
-function SimpleSportMod.autoCatchHandler(pl)
-   pl = pl or getPlayer()
-   local csq = pl:getCurrentSquare()
-   if not csq then return end
-   local item = SimpleSportMod.getSportItem(csq)
-   if not item then return end
-   if SimpleSportMod.isPreparedToCatch(pl) then
-      SimpleSportMod.instaCatch(pl, item)
-   end   
-end
-Events.OnPlayerUpdate.Add(SimpleSportMod.autoCatchHandler)
-
-function SimpleSportMod.instaCatch(pl, item)
-   pl = pl or getPlayer() 
-   local csq = pl:getCurrentSquare()
-   if not csq then return end
-   item = item or SimpleSportMod.getSportItem(csq)
-   if item then
-      if tostring(WeaponType.getWeaponType(pl)) == "barehand" then  
-         local fType = item:getFullType()
-         if fType then
-            if SimpleSportMod.SportItems[fType] then
-               if not pl:getCharacterActions():isEmpty() then
-                  pl:StopAllActionQueue()
-               end
-               if SimpleSportMod.isPreparedToCatch(pl)  then
-
-                  ISTimedActionQueue.add(ISGrabItemAction:new(pl, item:getWorldItem(), 0));
-                  ISTimedActionQueue.add(ISEquipWeaponAction:new(pl, item, 0, true));
-                  SimpleSportMod.setCatchPrepare(pl, false)   
-               end
-            end
-         end
+   local function updateMarker()
+      if not dropRad or dropRad:isRemoved() then return end
+      
+      local dist = pl:DistTo(x, y)
+      if dist <= rad then
+         dropRad:setColor(0, 1, 0)
+      else
+         dropRad:setColor(1, 0, 0)
       end
    end
-end
------------------------            ---------------------------
------------------------            ---------------------------
 
-function SimpleSportMod.instaCatchAction(pl)
-   pl = pl or getPlayer()
+   Events.OnTick.Add(updateMarker)
 
-   if tostring(WeaponType.getWeaponType(pl)) ~= "barehand" then return end
-   if not SimpleSportMod.isPreparedToCatch(pl) then return end
-
-   ISTimedActionQueue.add(ISWaitForCatchAction:new(pl, 300))
-end
-
------------------------            ---------------------------
-ISWaitForCatchAction = ISBaseTimedAction:derive("ISWaitForCatchAction")
-
-function ISWaitForCatchAction:isValid()
-   return true
-end
-
-function ISWaitForCatchAction:update()
-   local item = SimpleSportMod.getSportItem(self.pl:getCurrentSquare())
-   if item and SimpleSportMod.isSportItem(item) then
-      if not self.pl:getCharacterActions():isEmpty() then
-         self.pl:StopAllActionQueue()
-      end
-
-      ISTimedActionQueue.add(ISGrabItemAction:new(self.pl, item:getWorldItem(), 0))
-      ISTimedActionQueue.add(ISEquipWeaponAction:new(self.pl, item, 0, true))
-      SimpleSportMod.setCatchPrepare(self.pl, false)
-      self:forceStop()
-   end
-end
-
-function ISWaitForCatchAction:perform()
-   ISBaseTimedAction.perform(self)
-end
-
-function ISWaitForCatchAction:forceStop()
-   ISBaseTimedAction.stop(self)
-end
-
-function ISWaitForCatchAction:new(pl, maxTime)
-   local o = {}
-   setmetatable(o, self)
-   self.__index = self
-   o.pl = pl
-   o.maxTime = maxTime or 300 -- 5 seconds
-   o.stopOnWalk = true
-   o.stopOnRun = true
-   o.forceProgressBar = false
-   return o
+   timer:Simple(dur, function()
+      if dropRad then dropRad:remove() end
+      Events.OnTick.Remove(updateMarker)
+   end)
 end
 
 
 
---[[ 
-Commands.SimpleSportMod.DropPoint = function(player, args)
-    local playerId = player:getOnlineID();
-    sendServerCommand("SimpleSportMod", "DropPoint", {id = playerId, dropPointX =  args.dropPointX, dropPointY =  args.dropPointY, dropPointZ =  args.dropPointZ})
+Commands.SimpleSportMod.DropPoint = function(args)
+    SimpleSportMod.DropPoint(args.dropPointX, args.dropPointY, args.dropPointZ)
 end
- ]]
+
+Events.OnServerCommand.Add(function(module, command, args)
+	if Commands[module] and Commands[module][command] then
+		Commands[module][command](args)
+	end
+end)

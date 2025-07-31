@@ -1,3 +1,32 @@
+--[[██████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████
+   ░▒▓█████▓▒░     ░▒▓█▓▒░        ░▒▓█▓▒░░▒▓█▓▒░  ░▒▓███████▓▒░   ░▒▓██████▓▒░   ░▒▓█▓▒░ ░▒▓█▓▒░  ░▒▓███████▓▒░    ░▒▓███████▓▒░
+  ░▒▓█▓▒░░▒▓█▓▒░   ░▒▓█▓▒░        ░▒▓█▓▒░░▒▓█▓▒░     ░▒▓█▓▒░     ░▒▓█▓▒░░▒▓█▓▒░  ░▒▓█▓▒░ ░▒▓█▓▒░  ▒▓░    ░▒▓█▓▒░   ░▒▓█▒░  ░▒▓█▒░
+  ░▒▓█▓▒░          ░▒▓█▓▒░        ░▒▓█▓▒░░▒▓█▓▒░     ░▒▓█▓▒░     ░▒▓█▓▒░         ░▒▓█▓▒░ ░▒▓█▓▒░         ░▒▓█▓▒░   ░▒▓█▒░  ░▒▓█▒░
+  ░▒▓█▓▒▒▓███▓▒░   ░▒▓█▓▒░         ░▒▓██████▓▒░      ░▒▓█▓▒░     ░▒▓█▓▒░         ░▒▓█████████▓▒░     ░▒▓███▓▒░     ░▒▓███████▓▒░
+  ░▒▓█▓▒░░▒▓█▓▒░   ░▒▓█▓▒░           ░▒▓█▓▒░         ░▒▓█▓▒░     ░▒▓█▓▒░         ░▒▓█▓▒░ ░▒▓█▓▒░         ░▒▓█▓▒░   ░▒▓█▓▒░  ░▒▓▒░
+  ░▒▓█▓▒░░▒▓█▓▒░   ░▒▓█▓▒░           ░▒▓█▓▒░         ░▒▓█▓▒░     ░▒▓█▓▒░░▒▓█▓▒░  ░▒▓█▓▒░ ░▒▓█▓▒░  ▒▓░    ░▒▓█▓▒░   ░▒▓█▓▒░  ░▒█▒░
+   ░▒▓██████▓▒░    ░▒▓████████▓▒░    ░▒▓█▓▒░         ░▒▓█▓▒░      ░▒▓██████▓▒░   ░▒▓█▓▒░ ░▒▓█▓▒░  ░▒▓███████▓▒░    ░▒▓█▓▒░  ░▒█▒░
+|‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾|
+|                        				 Custom  PZ  Mod  Developer  for  Hire										                      		 |
+|‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾|
+|                       	Portfolio:  https://steamcommunity.com/id/glytch3r/myworkshopfiles/			       				          |
+|                       		                                    														 	 		 	 		 	 |
+|                       	Discord:    glytch3r															     	     	     	     	     	          |
+|                       		                                    														 	                   |
+|                       	Support:    https://ko-fi.com/glytch3r														    	                   |
+|_______________________________________________________________________________________________________________________________-]]
+--[[_____________________________________________________________________________________________________________________________
+   ░▒▓██████▓▒░    ░▒▓████████▓▒░    ░▒▓█▓▒░         ░▒▓█▓▒░      ░▒▓██████▓▒░   ░▒▓█▓▒░ ░▒▓█▓▒░  ░▒▓███████▓▒░    ░▒▓█▓▒░  ░▒█▒░
+  ░▒▓█▓▒░░▒▓█▓▒░   ░▒▓█▓▒░           ░▒▓█▓▒░         ░▒▓█▓▒░     ░▒▓█▓▒░░▒▓█▓▒░  ░▒▓█▓▒░ ░▒▓█▓▒░  ▒▓░    ░▒▓█▓▒░   ░▒▓█▓▒░  ░▒█▒░
+  ░▒▓█▓▒░░▒▓█▓▒░   ░▒▓█▓▒░           ░▒▓█▓▒░         ░▒▓█▓▒░     ░▒▓█▓▒░         ░▒▓█▓▒░ ░▒▓█▓▒░         ░▒▓█▓▒░   ░▒▓█▓▒░  ░▒▓▒░
+  ░▒▓█▓▒▒▓███▓▒░   ░▒▓█▓▒░         ░▒▓██████▓▒░      ░▒▓█▓▒░     ░▒▓█▓▒░         ░▒▓█████████▓▒░     ░▒▓███▓▒░     ░▒▓███████▓▒░
+  ░▒▓█▓▒░          ░▒▓█▓▒░        ░▒▓█▓▒░░▒▓█▓▒░     ░▒▓█▓▒░     ░▒▓█▓▒░         ░▒▓█▓▒░ ░▒▓█▓▒░         ░▒▓█▓▒░   ░▒▓█▒░  ░▒▓█▒░
+  ░▒▓█▓▒░░▒▓█▓▒░   ░▒▓█▓▒░        ░▒▓█▓▒░░▒▓█▓▒░     ░▒▓█▓▒░     ░▒▓█▓▒░░▒▓█▓▒░  ░▒▓█▓▒░ ░▒▓█▓▒░  ▒▓░    ░▒▓█▓▒░   ░▒▓█▒░  ░▒▓█▒░
+   ░▒▓█████▓▒░     ░▒▓█▓▒░        ░▒▓█▓▒░░▒▓█▓▒░  ░▒▓███████▓▒░   ░▒▓██████▓▒░   ░▒▓█▓▒░ ░▒▓█▓▒░  ░▒▓███████▓▒░    ░▒▓███████▓▒░
+█████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████--]]
+
+require "lua_timers"
+
 SimpleSportMod = SimpleSportMod or {}
 
 function SimpleSportMod.doThrow(pl, wpn, targSq)
@@ -5,11 +34,18 @@ function SimpleSportMod.doThrow(pl, wpn, targSq)
     if not SimpleSportMod.isSportItem(wpn) then return end
 
     local thrownLoc = pl:getCurrentSquare()
-    SimpleSportMod.step = 0
-    SimpleSportMod.targX = round(targSq:getX())
-    SimpleSportMod.targY = round(targSq:getY())
-    local flr = targSq:getFloor()
+    local targX = round(targSq:getX())
+    local targY = round(targSq:getY())
+    local targZ = round(targSq:getZ())
+
     local fType =  wpn:getFullType()
+
+    if isClient() then
+        sendClientCommand("SimpleSportMod", "DropPoint", {dropPointX =  targX, dropPointY =  targY, dropPointZ =  targZ})
+    else
+        SimpleSportMod.DropPoint(targX, targY, targZ)
+    end
+    local flr = targSq:getFloor()
 
     if flr then
         flr:setHighlightColor(1, 0, 0, 1)
@@ -19,38 +55,21 @@ function SimpleSportMod.doThrow(pl, wpn, targSq)
     function SimpleSportMod.onTick()
         local ball = wpn:getWorldItem()
 
-        if not ball then
-            -- Rotate while item is still not on the floor
-            SimpleSportMod.step = (SimpleSportMod.step + 0.2) % 360
-            wpn:setWorldZRotation(SimpleSportMod.step)
+        if  ball then
+
             return
         end
 
-        local ballX = ball:getWorldPosX()
-        local ballY = ball:getWorldPosY()
-        local dist = thrownLoc:DistTo(ballX, ballY)
-
         ISRemoveItemTool.removeItem(wpn, pl:getPlayerNum())
-
         local spawnedBall = targSq:AddWorldInventoryItem(tostring(fType), 0, 0, 0)
---[[         spawnedBall:setWorldPosX(SimpleSportMod.targX)
-        spawnedBall:setWorldPosY(SimpleSportMod.targY) ]]
-
-        pl:setHaloNote("Ball Landed! "..tostring(dist), 150, 250, 150, 200)
         Events.OnTick.Remove(SimpleSportMod.onTick)
 
-        if flr then
-            flr:setHighlightColor(0, 1, 0, 1)
-            flr:setHighlighted(true, true)
-        end
-        if dist < 3 then
 
-        end
+        
     end
-
     Events.OnTick.Add(SimpleSportMod.onTick)
 end
-
+-----------------------            ---------------------------
 function SimpleSportMod.swing(pl, wpn)
     if wpn and SimpleSportMod.isThrowable(wpn) then
         local targSq = SimpleSportMod.getPointer()
@@ -62,3 +81,18 @@ end
 
 Events.OnWeaponSwing.Remove(SimpleSportMod.swing)
 Events.OnWeaponSwing.Add(SimpleSportMod.swing)
+
+
+-----------------------            ---------------------------
+--[[ 
+        SimpleSportMod.step = 0
+        SimpleSportMod.step = (SimpleSportMod.step + 0.2) % 360
+        wpn:setWorldZRotation(SimpleSportMod.step)
+        local ballX = ball:getWorldPosX()
+        local ballY = ball:getWorldPosY()
+        local dist = thrownLoc:DistTo(ballX, ballY)
+        spawnedBall:setWorldPosX(targX)
+        spawnedBall:setWorldPosY(targY) 
+
+ ]]
+-----------------------            ---------------------------

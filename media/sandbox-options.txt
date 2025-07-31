@@ -2,6 +2,12 @@ VERSION = 1,
 
 option SimpleSportMod.PickUpDistance
 {
-	type = double,	 min = 0.00,  max = 15,  default = 2,
+	type = double,	 min = 0.00,  max = 15,  default = 3,
 	page = SimpleSportMod,    translation = SimpleSportMod_PickUpDistance,
+}
+
+option SimpleSportMod.CatchWindow
+{
+	type = double,	 min = 0.00,  max = 15,  default = 3,
+	page = SimpleSportMod,    translation = SimpleSportMod_CatchWindow,
 }
