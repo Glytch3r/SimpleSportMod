@@ -7,14 +7,21 @@
   ░▒▓█▓▒░░▒▓█▓▒░   ░▒▓█▓▒░           ░▒▓█▓▒░         ░▒▓█▓▒░     ░▒▓█▓▒░░▒▓█▓▒░  ░▒▓█▓▒░ ░▒▓█▓▒░  ▒▓░    ░▒▓█▓▒░   ░▒▓█▓▒░  ░▒█▒░
    ░▒▓██████▓▒░    ░▒▓████████▓▒░    ░▒▓█▓▒░         ░▒▓█▓▒░      ░▒▓██████▓▒░   ░▒▓█▓▒░ ░▒▓█▓▒░  ░▒▓███████▓▒░    ░▒▓█▓▒░  ░▒█▒░
 |‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾|
-|                        				 Custom  PZ  Mod  Developer  for  Hire										                      		 |
+|                        				 Custom  PZ  Mod  Developer  for  Hire													                   |
 |‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾|
-|                       	Portfolio:  https://steamcommunity.com/id/glytch3r/myworkshopfiles/			       				          |
-|                       		                                    														 	 		 	 		 	 |
-|                       	Discord:    glytch3r															     	     	     	     	     	          |
+|                       	Portfolio:  https://steamcommunity.com/id/glytch3r/myworkshopfiles/						       	          |
+|                       		                                    														 	                   |
+|                       	Discord:    glytch3r													                                              |
 |                       		                                    														 	                   |
 |                       	Support:    https://ko-fi.com/glytch3r														    	                   |
 |_______________________________________________________________________________________________________________________________-]]
+
+keyBinding = keyBinding or {}
+table.insert(keyBinding, { value = "[SimpleSportMod]" } );
+table.insert(keyBinding, { value = "Pick Up", key = 19 } ); -- Keyboard.KEY_R
+table.insert(keyBinding, { value = "Catch", key = 18 } ); -- Keyboard.KEY_E
+
+
 --[[_____________________________________________________________________________________________________________________________
    ░▒▓██████▓▒░    ░▒▓████████▓▒░    ░▒▓█▓▒░         ░▒▓█▓▒░      ░▒▓██████▓▒░   ░▒▓█▓▒░ ░▒▓█▓▒░  ░▒▓███████▓▒░    ░▒▓█▓▒░  ░▒█▒░
   ░▒▓█▓▒░░▒▓█▓▒░   ░▒▓█▓▒░           ░▒▓█▓▒░         ░▒▓█▓▒░     ░▒▓█▓▒░░▒▓█▓▒░  ░▒▓█▓▒░ ░▒▓█▓▒░  ▒▓░    ░▒▓█▓▒░   ░▒▓█▓▒░  ░▒█▒░
@@ -26,170 +33,3 @@
 █████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████--]]
 
 -----------------------            ---------------------------
-SimpleSportMod = SimpleSportMod or {}
-
-local pl = getPlayer()
- 
-function SimpleSportMod.init(plNum, pl)
-    if isIngameState() then
-      pl:getModData()['SimpleSportMod'] =  pl:getModData()['SimpleSportMod'] or {}
-      pl:getModData()['SimpleSportMod']['isPreparedToCatch'] = false
-	end
-end
-Events.OnCreatePlayer.Add(SimpleSportMod.init)
-
-function SimpleSportMod.getData(pl)   
-   pl = pl or getPlayer()
-   return pl:getModData()['SimpleSportMod']
-end
-
-function SimpleSportMod.isPreparedToCatch(pl)   
-   pl = pl or getPlayer()
-   local data = SimpleSportMod.getData(pl) or {}
-   return data['isPreparedToCatch']   
-end
-
-function SimpleSportMod.setCatchPrepare(pl, bool)   
-   pl = pl or getPlayer()
-   local data = SimpleSportMod.getData(pl) or {}
-   data['isPreparedToCatch'] = bool
-   print(bool)
-   return bool
-end
-
-function SimpleSportMod.autoCatchHandler(pl)
-   pl = pl or getPlayer()
-   local csq = pl:getCurrentSquare()
-   if not csq then return end
-   local item = SimpleSportMod.getSportItem(csq)
-   if not item then return end
-   if SimpleSportMod.isPreparedToCatch(pl) then
-      SimpleSportMod.instaCatch(pl, item)
-   end   
-end
-Events.OnPlayerUpdate.Add(SimpleSportMod.autoCatchHandler)
-
-function SimpleSportMod.instaCatch(pl, item)
-   pl = pl or getPlayer() 
-   local csq = pl:getCurrentSquare()
-   if not csq then return end
-   item = item or SimpleSportMod.getSportItem(csq)
-   if item then
-      if tostring(WeaponType.getWeaponType(pl)) == "barehand" then  
-         local fType = item:getFullType()
-         if fType then
-            if SimpleSportMod.SportItems[fType] then
-               if not pl:getCharacterActions():isEmpty() then
-                  pl:StopAllActionQueue()
-               end
-               if SimpleSportMod.isPreparedToCatch(pl)  then
-
-                  ISTimedActionQueue.add(ISGrabItemAction:new(pl, item:getWorldItem(), 0));
-                  ISTimedActionQueue.add(ISEquipWeaponAction:new(pl, item, 0, true));
-                  SimpleSportMod.setCatchPrepare(pl, false)   
-               end
-            end
-         end
-      end
-   end
-end
-
------------------------            ---------------------------
---[[ 
-SimpleSportMod = SimpleSportMod or {}
-
-function SimpleSportMod.doThrow(targSq, item)
-    local pl = getPlayer()
-    local targX = round(targSq:getX())
-    local targY = round(targSq:getY())
-
-    local dist = pl:DistTo(targX, targY)
-    SimpleSportMod.step = 0
-    SimpleSportMod.threshold = 1000 * dist
-    SimpleSportMod.isIncreasing = true
-    SimpleSportMod.ball = item
-    SimpleSportMod.targetX = targX
-    SimpleSportMod.targetY = targY
-
-    function SimpleSportMod.onTick(ticks)
-        if not SimpleSportMod.ball then
-            Events.OnTick.Remove(SimpleSportMod.onTick)
-            return
-        end
-
-        if SimpleSportMod.isIncreasing then
-            SimpleSportMod.step = SimpleSportMod.step + 0.5
-            if SimpleSportMod.step >= SimpleSportMod.threshold then
-                SimpleSportMod.isIncreasing = false
-            end
-        else
-            SimpleSportMod.step = SimpleSportMod.step - 0.5
-            if SimpleSportMod.step < 0 then
-                Events.OnTick.Remove(SimpleSportMod.onTick)
-                print("Stopped: step went below 0")
-                return
-            end
-        end
-
-        SimpleSportMod.ball:setWorldScale(SimpleSportMod.step)
-        SimpleSportMod.ball:setWorldZRotation(ticks)
-
-        local projectile = SimpleSportMod.ball:getWorldItem()
-        if projectile then
-            local ballX = projectile:getWorldPosX()
-            local ballY = projectile:getWorldPosY()
-
-            local dx = SimpleSportMod.targetX - ballX
-            local dy = SimpleSportMod.targetY - ballY
-            local distSq = dx * dx + dy * dy
-
-            if distSq <= 0.1 then
-                Events.OnTick.Remove(SimpleSportMod.onTick)
-                print("Ball reached destination")
-                return
-            end
-
-            projectile:setWorldPosX(ballX + dx * 0.1)
-            projectile:setWorldPosY(ballY + dy * 0.1)
-        end
-    end
-
-    Events.OnTick.Add(SimpleSportMod.onTick)
-end
- ]]
---SimpleSportMod.doThrow(getPointer(), dbgItem)
-
-
-
---[[ 
-
-print(Calendar.SECOND
-
-)
-Calendar.HOUR
-Calendar.HOUR_OF_DAY
-Calendar.MINUTE
-Calendar.SECOND
-Calendar.MILLISECOND
-
-ticks = ticks + 1
-if ticks % 250 == 0 then
-	getPlayer():setHaloNote(tostring(),100,100,100,100)
-end
-
-if ticks % 500 == 0 then
-	ticks=0;
-end
-
-if ticks > TickTrigger then
-	ticks = 0
-	count = count - 1
-end
-
-if count <= 1 then
-	count = defaultCount
-end
-function SimpleSportMod.onItemFall(item)
-   print(item)
-end
-Event.onItemFall.Add(SimpleSportMod.onItemFall) ]]

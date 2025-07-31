@@ -223,6 +223,7 @@ module Base {
 
     }
 
+
     item SimpleSportMod_SoccerBall
     {
         DisplayCategory 		= Sports,
@@ -259,7 +260,6 @@ module Base {
         OnCreate  				= SimpleSportMod.OnCreate,
 
     }
-
 
 }
 

@@ -1,5 +1,7 @@
     UI_EN = {
         UI_optionscreen_binding_SimpleSportMod = "Simple Sport Mod",
         UI_optionscreen_binding_Pick Up = "Pick Up"
+        UI_optionscreen_binding_Catch = "Catch"
+
 
     }
